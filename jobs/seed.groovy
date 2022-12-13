@@ -1,6 +1,8 @@
 // Seed scripts to generate Jenkins pipelines as code.
 // This script is triggered by an upstream freestyle job: 'seed'
 // and generates various downstream pipeline-jobs for each 'pipelineJob' block below.
+//
+// Pipeline blocks are idempotent + removning a job doesn't delete it from Jenkins (no jobs state mgmt).
 pipelineJob('simple-java-maven-app') {
     definition {
         cpsScm {
