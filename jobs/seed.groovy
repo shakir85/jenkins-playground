@@ -3,10 +3,10 @@
 // and generates various downstream pipeline-jobs for each 'pipelineJob' block below.
 pipelineJob('simple-java-maven-app') {
     definition {
-        cps {
-            // script this pipeline is going to use for builds (file relative to the seed workspace path).
-            script(readFileFromWorkspace('jenkins-playground/pipelines/simple-java-maven-app/Jenkinsfile'))
-            sandbox()
+        cpsScm {
+            scm {
+                git('https://github.com/shakir85/simple-java-maven-app.git')
+            }
         }
     }
 }
@@ -14,7 +14,8 @@ pipelineJob('simple-java-maven-app') {
 pipelineJob('Hello-world') {
     definition {
         cps {
-            // script this pipeline is going to use for builds (file relative to the seed workspace path).
+            // path to Jenkins file this pipeline is going to use for builds 
+            // (path is relative to the seed workspace path).
             script(readFileFromWorkspace('jenkins-playground/pipelines/helloWorld/Jenkinsfile'))
             sandbox()
         }
