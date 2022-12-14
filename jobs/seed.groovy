@@ -1,7 +1,9 @@
-preBuildSteps {
-            shell("echo 'this is a hello world step' >> file")
-        }
 pipelineJob('Hello-world') {
+    
+    preBuildSteps {
+        shell("echo 'this is a hello world step' >> file")
+    }
+
     definition {   
         description("Hello world job") 
         
