@@ -20,14 +20,13 @@ pipelineJob('simple-java-maven-app') {
         }
     }
 }
-
+println("----------test groovy!!! hello world!!?? -----------")
 pipelineJob('Hello-world') {
     definition {
         cps {
             // path to Jenkins file this pipeline is going to use for builds 
             // (path is relative to the seed workspace path).
             script(readFileFromWorkspace('jenkins-playground/pipelines/helloWorld/Jenkinsfile'))
-            println("----------test groovy!!! hello world!!?? -----------")
             sandbox()
         }
     }
