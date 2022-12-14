@@ -4,6 +4,7 @@ pipeline {
         stage("test"){
             steps{
                 sh "echo Hello >> file1"
+                sh "echo hi >> file2"
             }
         }
     }
