@@ -1,3 +1,6 @@
+preBuildSteps {
+            shell("echo 'this is a hello world step' >> file")
+        }
 pipelineJob('Hello-world') {
     definition {   
         description("Hello world job") 
@@ -6,10 +9,6 @@ pipelineJob('Hello-world') {
             stringParam('myParameterName', 'my default stringParam value', 'my description')
             choiceParam('deployParam', ['dev (default)', 'test', 'prod'], 'Select deploy environment')
              booleanParam('Required', false)
-        }
-
-        preBuildSteps {
-            shell("echo 'this is a hello world step' >> file")
         }
 
         cps {
