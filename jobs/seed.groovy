@@ -3,6 +3,7 @@ pipelineJob('Hello-world') {
         description("Hello world job") 
         parameters{
             stringParam('myParameterName', 'my default stringParam value', 'my description')
+            choiceParam('deployParam', ['dev (default)', 'test', 'prod'], 'Select deploy environment')
         }
         cps {
             script(readFileFromWorkspace('jenkins-playground/pipelines/helloWorld/Jenkinsfile'))
