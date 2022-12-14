@@ -32,6 +32,10 @@ job('autopilot-dsl-job') {
         timestamps()
     }
 
+    scm {
+        git(url: 'https://github.com/shakir85/simple-java-maven-app.git', branch: 'master' )
+    }
+
     steps {
         shell("echo 'Test DSL jobs!'")
         shell("mvn --version")
