@@ -19,6 +19,8 @@ pipelineJob('Hello-world') {
 job('autopilot-dsl-job') {
     
     description('Testing DSL jobs')
+
+    displayName('Auto-Pilot DSL Job')
     
     parameters{
         stringParam('Tool', defaultValue='mvn', description='Version check tool')
