@@ -5,6 +5,7 @@ pipeline {
             steps{
                 sh "echo Hello >> file1"
                 sh "echo hi >> file2"
+                sh "echo greetings >> file3"
             }
         }
     }
