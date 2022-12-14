@@ -33,7 +33,7 @@ job('autopilot-dsl-job') {
     }
 
     scm {
-        git('https://github.com/shakir85/simple-java-maven-app.git')
+        git('https://github.com/shakir85/simple-java-maven-app.git', 'master')
     }
 
     steps {
