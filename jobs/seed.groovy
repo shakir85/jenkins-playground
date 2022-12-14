@@ -8,6 +8,14 @@ pipelineJob('simple-java-maven-app') {
         cpsScm {
             scm {
                 git('https://github.com/shakir85/simple-java-maven-app.git')
+                branch('main')
+                git {
+                    extensions {
+                        cloneOptions {
+                            noTags(noTags = true)
+                        }
+                    }
+                }
             }
         }
     }
