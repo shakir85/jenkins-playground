@@ -26,6 +26,7 @@ job('autopilot-dsl-job') {
     }
 
     wrappers {
+        colorizeOutput()
         timestamps()
     }
 
