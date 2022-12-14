@@ -15,3 +15,22 @@ pipelineJob('Hello-world') {
         }
     }
 }
+
+job('autopilot-dsl-job') {
+    
+    description('Testing DSL jobs')
+    
+    parameters{
+        stringParam('Tool', defaultValue='mvn', description='Version check tool')
+        choiceParam('Args', ['--version (default)', '--help'])
+    }
+
+    wrappers {
+        timestamps()
+    }
+
+    steps {
+        shell("echo 'Test DSL jobs!'")
+        shell("mvn --version")
+    }
+}
