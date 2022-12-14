@@ -1,10 +1,6 @@
 pipelineJob('Hello-world') {
-    
-    preBuildSteps {
-        shell("echo 'this is a hello world step' >> file")
-    }
+    definition {
 
-    definition {   
         description("Hello world job") 
         
         parameters {
@@ -14,6 +10,7 @@ pipelineJob('Hello-world') {
         }
 
         cps {
+            script("echo 'hello world proj' >> file")
             script(readFileFromWorkspace('jenkins-playground/pipelines/helloWorld/Jenkinsfile'))
             sandbox()
         }
