@@ -31,10 +31,7 @@ job('autopilot-dsl-job') {
     }
 
     steps {
-        shell """
-        GREEN='\033[0;32m'; NC='\033[0m'
-        printf '\$GREEN Test DSL jobs! \$NC'
-        mvn --version
-        """
+        shell("echo 'Test DSL jobs!'")
+        shell("mvn --version")
     }
 }
