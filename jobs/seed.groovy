@@ -11,7 +11,7 @@ pipelineJob('Hello-world') {
         
         cps {
             script(readFileFromWorkspace('jenkins-playground/pipelines/helloWorld/Jenkinsfile'))
-            sandbox()
+            // sandbox()
         }
     }
 }
