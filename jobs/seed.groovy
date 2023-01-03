@@ -18,8 +18,6 @@ pipelineJob('Hello-world') {
 
 job('autopilot-dsl-job') {
 
-    disabled()
-    
     description('Testing DSL jobs')
 
     displayName('Auto-Pilot DSL Job')
