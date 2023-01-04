@@ -1,4 +1,14 @@
 pipelineJob("simple-java-maven-app") {
+    definition {
+        cpsScm {
+            scm {
+                git('git@github.com:shakir85/simple-java-maven-app.git')
+            }
+            scriptPath('jenkins/Jenkinsfile')
+        }   
+    }
+}
+
     // environmentVariables {
     //     env("foo", "bar")
     //     }
@@ -7,13 +17,3 @@ pipelineJob("simple-java-maven-app") {
     // folder(folder) { 
     //     displayName("gen-simple-mvn-app")
     // }
-
-    definition {
-        cpsScm {
-            scm {
-                git('git@github.com:shakir85/simple-java-maven-app.git')
-            }
-        }   
-        scriptPath('jenkins/Jenkinsfile')
-    }
-}
