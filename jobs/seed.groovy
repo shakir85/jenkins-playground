@@ -2,7 +2,7 @@ pipelineJob("simple-java-maven-app") {
     definition {
         cpsScm {
             scm {
-                git('git@github.com:shakir85/simple-java-maven-app.git')
+                git('https://github.com/shakir85/simple-java-maven-app.git')
             }
             scriptPath('jenkins/Jenkinsfile')
         }   
