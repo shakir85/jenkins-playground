@@ -3,6 +3,14 @@ pipelineJob("simple-java-maven-app") {
         cpsScm {
             scm {
                 git('https://github.com/shakir85/simple-java-maven-app.git')
+                git {
+                    extensions {
+                        perBuildTag(False)
+                        // cloneOption {
+                        //     noTag(True)
+                        // }
+                    }
+                }
             }
             scriptPath('jenkins/Jenkinsfile')
         }   
