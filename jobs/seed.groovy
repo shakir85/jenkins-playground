@@ -1,9 +1,9 @@
 pipelineJob("simple-java-maven-app-${env.version}") {
     environmentVariables {
-        env('version', '01')
-    }
+        env("foo", "bar")
+        }
 
-    folder = "myapps-${env.version}/simple-mvn-app"
+    folder = "myapps-/simple-mvn-app"
     folder(folder) { 
         displayName("gen-simple-mvn-app")
     }
