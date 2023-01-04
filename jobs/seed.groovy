@@ -1,43 +1,19 @@
-pipelineJob('Hello-world') {
+environmentVariables {
+        env('version', '01')
+    }
+
+folder = "myapps-${env.version}/simple-mvn-app"
+folder(folder) { 
+        displayName("gen-simple-mvn-app")
+    }
+
+pipelineJob("simple-java-maven-app-${env.version}") {
     definition {
-
-        description("Hello world job") 
-
-        parameters {
-            stringParam('myParameterName', 'my default stringParam value', 'my description')
-            choiceParam('deployParam', ['dev (default)', 'test', 'prod'], 'Select deploy environment')
-            booleanParam('Required', false)
+        cpsScm {
+            scm {
+                git('git@github.com:shakir85/simple-java-maven-app.git')
+            }
         }
-        
-        cps {
-            script(readFileFromWorkspace('jenkins-playground/pipelines/helloWorld/Jenkinsfile'))
-            // sandbox()
-        }
-    }
-}
-
-job('autopilot-dsl-job') {
-
-    description('Testing DSL jobs')
-
-    displayName('Auto-Pilot DSL Job')
-    
-    parameters{
-        stringParam('Tool', defaultValue='mvn', description='Version check tool')
-        choiceParam('Args', ['--version (default)', '--help'])
-    }
-
-    wrappers {
-        colorizeOutput()
-        timestamps()
-    }
-
-    scm {
-        git('https://github.com/shakir85/simple-java-maven-app.git', 'master')
-    }
-
-    steps {
-        shell("echo 'Test DSL jobs!'")
-        shell("mvn --version")
+        scriptPath('jenkins/Jenkinsfile')
     }
 }
