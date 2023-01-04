@@ -1,4 +1,4 @@
-pipelineJob("simple-java-maven-app-${env.version}") {
+pipelineJob("simple-java-maven-app") {
     // environmentVariables {
     //     env("foo", "bar")
     //     }
