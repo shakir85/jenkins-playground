@@ -1,15 +1,12 @@
 pipelineJob("simple-java-maven-app") {
 
-        blockOn(['project-1']) { 
-            blockLevel('GLOBAL') 
-        }
-        parameters {
-            stringParam('VERSION')
-        }
         environmentVariables {
             env('ONE', '1')
             env('TWO', '2')
         }
+        blockOn(['project-1']) { blockLevel('GLOBAL') }
+        parameters { stringParam('VERSION') }
+        folder('myFolder') { displayName('myJobFolder') }
 
     definition {
         cpsScm {
