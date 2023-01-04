@@ -8,12 +8,3 @@ pipelineJob("simple-java-maven-app") {
         }   
     }
 }
-
-    // environmentVariables {
-    //     env("foo", "bar")
-    //     }
-
-    // folder = "myapps-/simple-mvn-app"
-    // folder(folder) { 
-    //     displayName("gen-simple-mvn-app")
-    // }
