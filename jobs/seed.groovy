@@ -1,4 +1,6 @@
-pipelineJob("simple-java-maven-app") {
+folder('maven-app-job') { displayName('simple-java-maven-app') }
+
+pipelineJob("${folder}/simple-java-maven-app") {
 
         environmentVariables {
             env('ONE', '1')
@@ -6,7 +8,6 @@ pipelineJob("simple-java-maven-app") {
         }
         blockOn(['project-1']) { blockLevel('GLOBAL') }
         parameters { stringParam('VERSION') }
-        folder('myFolder') { displayName('myJobFolder') }
 
     definition {
         cpsScm {
