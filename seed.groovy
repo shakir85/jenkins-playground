@@ -16,6 +16,7 @@ pipelineJob("simple-java-maven-app") {
     parameters { 
         stringParam('VERSION')
         stringParam('urlVal', "${urlVal}")
+        stringParam('urlVal', "${mapVal}")
     }
 
     definition {
