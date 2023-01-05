@@ -1,13 +1,3 @@
-import libs.Utilities
-
-def buildUrl = Utilities.buildUrl
-
-job('test-groovy-packaging') {
-    steps {
-        shell("echo $buildUrl")
-    }
-}
-
 pipelineJob("simple-java-maven-app") {
         environmentVariables {
             env('ONE', '1')
