@@ -1,10 +1,9 @@
 import libs.Utilities
 
 def mapVal = Utilities.mapVal
+def urlVal = Utilities.urlVal
 
 pipelineJob("simple-java-maven-app") {
-
-    def urlVal = Utilities.urlVal
 
     environmentVariables {
         env('ONE', '1')
@@ -16,7 +15,8 @@ pipelineJob("simple-java-maven-app") {
     parameters { 
         stringParam('VERSION')
         stringParam('urlVal', "${urlVal}")
-        stringParam('mapVal', "${mapVal}")
+        stringParam(mapVal.each{it.key}, mapVal.each{it.value})
+        // stringParam('mapVal', "${mapVal}")
     }
 
     definition {
