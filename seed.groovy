@@ -1,5 +1,7 @@
 import libs.Utilities
 
+def mapVal = Utilities.mapVal
+
 pipelineJob("simple-java-maven-app") {
 
     def urlVal = Utilities.urlVal
