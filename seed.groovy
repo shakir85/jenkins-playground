@@ -1,10 +1,20 @@
+import libs.Utilities
+
 pipelineJob("simple-java-maven-app") {
-        environmentVariables {
-            env('ONE', '1')
-            env('TWO', '2')
-        }
-        blockOn(['project-1']) { blockLevel('GLOBAL') }
-        parameters { stringParam('VERSION') }
+
+    def urlVal = Utilities.urlVal
+
+    environmentVariables {
+        env('ONE', '1')
+        env('TWO', '2')
+    }
+
+    blockOn(['project-1']) { blockLevel('GLOBAL') }
+    
+    parameters { 
+        stringParam('VERSION')
+        stringParam('urlVal', ${urlVal})
+    }
 
     definition {
         cpsScm {
@@ -16,4 +26,3 @@ pipelineJob("simple-java-maven-app") {
         }   
     }
 }
-// push branch
