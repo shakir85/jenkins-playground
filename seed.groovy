@@ -1,6 +1,6 @@
 import libs.Utilities
 
-def mapVal = Utilities.mapVal
+def urlVal = Utilities.urlVal
 def listVal = Utilities.listVal
 
 pipelineJob("simple-java-maven-app") {
@@ -13,7 +13,7 @@ pipelineJob("simple-java-maven-app") {
     blockOn(['project-1']) { blockLevel('GLOBAL') }
     
     parameters { 
-        stringParam('VERSION')
+        stringParam('urlVal', "${urlVal}")
         stringParam('listVal', "${listVal}")
     }
 
