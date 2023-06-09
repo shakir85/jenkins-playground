@@ -1,52 +1,32 @@
 pipeline {
     agent any
     environment {
-        RELEASE='20.04'
+        TAG='0.01'
+        IMG='imagename'
+        NAME='containername'
+        EXPORT="${WORKSPACE}/export"
+        PROJECT='/path/to/project'
     }
     stages {
-        stage('Build') {
-            environment {
-                LOG_LEVEL='INFO'
-            }
-            parallel {
-                stage('linux-arm64') {
-                    steps {
-                        echo "Building release ${RELEASE} for ${STAGE_NAME} with log level ${LOG_LEVEL}..."
-                    }
-                }
-                stage('linux-amd64') {
-                    steps {
-                        echo "Building release ${RELEASE} for ${STAGE_NAME} with log level ${LOG_LEVEL}..."
-                    }
-                }
-                stage('windows-amd64') {
-                    steps {
-                        echo "Building release ${RELEASE} for ${STAGE_NAME} with log level ${LOG_LEVEL}..."
-                    }
-                }
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build --no-cache -t ${env.IMG}:${env.TAG}"
             }
         }
-        stage('Test') {
+        stage('Run Container') {
             steps {
-                echo "Testing release ${RELEASE}..."
-            }
-        }
-        stage('Deploy') {
-            input {
-                message 'Deploy?'
-                ok 'Do it!'
-                parameters {
-                    string(name: 'TARGET_ENVIRONMENT', defaultValue: 'PROD', description: 'Target deployment environment')
-                }
-            }
-            steps {
-                echo "Deploying release ${RELEASE} to environment ${TARGET_ENVIRONMENT}"
+                sh 'echo "Working in: ${env.WORKSPACE}"'
+                sh """
+                docker run -d --rm --name ${env.NAME} \
+                -v ${env.EXPORT} \
+                ${env.IMG}:${env.TAG}
+                """
             }
         }        
     }
     post{
-        always {
-             echo 'Prints whether deploy happened or not, success or failure'
+        success {
+             echo "Job completed successfully! build num: ${BUILD_NUMBER}"
         }
     }
 }
