@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh 'echo "Working in: ${env.WORKSPACE}"'
+                sh "echo \"Working in: ${env.WORKSPACE}\""
                 sh """
                 docker run -d --rm --name ${env.NAME} \
                 -v ${env.EXPORT} \
