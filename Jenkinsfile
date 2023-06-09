@@ -27,6 +27,7 @@ pipeline {
     post{
         success {
              echo "Job completed successfully! build num: ${BUILD_NUMBER}"
+             archiveArtifacts artifacts: './export/file.txt'
         }
     }
 }
