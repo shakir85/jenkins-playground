@@ -18,7 +18,7 @@ pipeline {
                 sh "echo \"Working in: ${env.WORKSPACE}\""
                 sh """
                 docker run -d --rm --name ${env.NAME} \
-                -v ${env.EXPORT} \
+                -v ${env.EXPORT}:/app \
                 ${env.IMG}:${env.TAG}
                 """
             }
