@@ -28,6 +28,8 @@ pipeline {
         success {
              echo "Job completed successfully! build num: ${BUILD_NUMBER}"
              archiveArtifacts artifacts: 'export/file.txt'
+             echo "Cleaning up..."
+             sh "docker image rm -f ${env.IMG}:${env.TAG}"
         }
     }
 }
