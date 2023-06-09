@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    environment {
+        TAG='0.01'
+        IMG='imagename'
+        NAME='containername'
+        DATA='/path/to/vol/data'
+        EXPORT='/path/to/vol/export'
+        PROJECT='/path/to/project'
+    }
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build --no-cache -t ${env.IMG}:${env.TAG}"
+            }
+        }
+        stage('Run Container') {
+            steps {
+                echo '''
+                docker run -d --name ${env.NAME} \
+                -v ${env.DATA} \
+                -v ${env.EXPORT} \
+                ${env.IMG}:${env.TAG}
+                '''
+            }
+        }        
+    }
+    post{
+        always {
+             sh '''
+             docker kill ${env.NAME} && \
+             docker rm -f  ${env.NAME} && \
+             docker image rm ${env.IMG}:${env.TAG}
+             rm -rf ${env.PROJECT} >> 2>&1
+             '''
+        }
+    }
+}
