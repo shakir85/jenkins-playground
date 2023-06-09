@@ -1,11 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage("test"){
+        stage("Build Image"){
             steps{
-                sh "echo Hello >> file1"
-                sh "echo hi >> file2"
-                sh "echo greetings >> file3"
+                sh "docker build -t custome:local"
             }
         }
     }
