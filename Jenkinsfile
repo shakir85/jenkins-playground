@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                sh "docker build --no-cache -t ${env.IMG}:${env.TAG}"
+                sh "docker build --no-cache -t ${env.IMG}:${env.TAG} ."
             }
         }
         stage('Run Container') {
