@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("Build Image"){
             steps{
-                sh "docker build -t custome:$TAG"
+                sh "docker build -t custome:$TAG ."
             }
         }
     }
