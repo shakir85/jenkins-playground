@@ -1,14 +1,13 @@
 pipeline {
-  agent any
-  stages {
-    stage('Echo Command') {
-      steps {
-        sh 'echo "This is build num: $BUILD_NUMBER for var: $DEMO"'
-      }
+    agent any
+    environment{
+      TAG = 'latest'
     }
-
-  }
-  environment {
-    DEMO = 'thisisdemoval'
-  }
+    stages {
+        stage("Build Image"){
+            steps{
+                sh "docker build -t custome:$TAG"
+            }
+        }
+    }
 }
